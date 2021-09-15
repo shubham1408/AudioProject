@@ -1,0 +1,7 @@
+from .constants import SHAYARI,MIMICKRY,JOKE,OTHERS
+AUDIO_TYPE = (
+    ('SHAYARI', SHAYARI),
+    ('MIMICKRY', MIMICKRY),
+    ('JOKE', JOKE),
+    ('OTHERS', OTHERS)
+)

@@ -20,6 +20,7 @@ class CommentOnAudio(models.Model):
         return "{}".format(self.id)
 
 
+
 def audio_folder_upload(instance, filename):
     return (
         f"/audio/{instance.type_of_audio}/{instance.audio_file}"

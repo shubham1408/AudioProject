@@ -20,6 +20,16 @@ class CommentOnAudio(models.Model):
         return "{}".format(self.id)
 
 
+class LikeOnAudio(models.Model):
+    liked_by_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
+
+    class Meta:
+        verbose_name_plural = "Likes On Audio"
+
+    def __str__(self):
+        return "{}".format(self.id)
+
 
 def audio_folder_upload(instance, filename):
     return (
@@ -30,7 +40,7 @@ class AudioTable(models.Model):
     audio_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
     audio_file = models.FileField(upload_to=audio_folder_upload)
     type_of_audio = models.CharField(max_length=200, choices=AUDIO_TYPE)
-    likes_on_audio = models.IntegerField(blank=True, null=True)
+    likes_on_audio = models.ManyToManyField(LikeOnAudio, blank=True, null=True)
     comments_on_audio = models.ManyToManyField(CommentOnAudio, null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True, blank=False, null=False)
